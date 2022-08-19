@@ -22,14 +22,14 @@ void main()
 	struct SEmployee E1={"Ahmed",1}, E2={"Aref",2}, E3={"Omaira",3};
 	int i;
 	//Creating an array of pointers to structs-->
-	struct SEmployee *arr_Ptr_Employee[] = {&E1,&E2,&E3};
+	struct SEmployee *arr_Ptr_SEmployee[] = {&E1,&E2,&E3};
 	//Creating a pointer to an array of pointers to structs-->
-	struct SEmployee* (*ptr_arrayOfSEmployee)[3] = &arr_Ptr_Employee;
+	struct SEmployee* (*ptr_arr_ptrs_SEmployee)[3] = &arr_Ptr_SEmployee;
 
 	for(i=0;i<3;i++)
 		{
-			printf("Employee Name: %s\n",(*((*ptr_arrayOfSEmployee)+i))->name);
-			printf("Employee ID : %d\n", (*((*ptr_arrayOfSEmployee)+i))->id);
+			printf("Employee Name: %s\n",(*(*(ptr_arr_ptrs_SEmployee)+i))->name);
+			printf("Employee ID : %d\n", (*(*(ptr_arr_ptrs_SEmployee)+i))->id);
 			printf("----------------------\n");
 		}
 
