@@ -1,5 +1,5 @@
-#ifndef STM32_PLATFORM_TYPES_H_
-#define STM32_PLATFORM_TYPES_H_
+#ifndef AUTOSAR_PLATFORM_TYPES_H_
+#define AUTOSAR_PLATFORM_TYPES_H_
 
 
 /**********************************************************************************/
