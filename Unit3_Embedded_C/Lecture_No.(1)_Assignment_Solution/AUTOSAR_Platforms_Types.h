@@ -12,14 +12,14 @@ typedef unsigned char 	boolean;
 /* non-volatile and signed */
 typedef char 						sint8;
 typedef short 						sint16;
-typedef int							sint32;
-typedef signed long long int        sint64;
+typedef int						sint32;
+typedef signed long long int        		sint64;
 
 /* non-volatile and unsigned */
 typedef unsigned char 				uint8;
 typedef unsigned short				uint16;
-typedef unsigned int 				uint32;
-typedef unsigned long long int      uint64;
+typedef unsigned int 					uint32;
+typedef unsigned long long int      		uint64;
 
 /* volatile and signed */
 typedef volatile signed char                vsint8;
@@ -35,11 +35,11 @@ typedef volatile unsigned long long int     vuint64;
 
 /* non-volatile real */
 typedef float 						float32;
-typedef double  					float64;
+typedef double  						float64;
 
 /* volatile real*/
 typedef volatile float 				vfloat32;
-typedef volatile double  			vfloat64;
+typedef volatile double  				vfloat64;
 
 /**********************************************************************************/
 /*                                 Definitions                                    */
