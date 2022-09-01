@@ -34,12 +34,12 @@ typedef volatile unsigned int               vuint32;
 typedef volatile unsigned long long int     vuint64;
 
 /* non-volatile real */
-typedef float 								float32;
-typedef double  						  	float64;
+typedef float 						float32;
+typedef double  					float64;
 
 /* volatile real*/
-typedef volatile float 						vfloat32;
-typedef volatile double  					vfloat64;
+typedef volatile float 				vfloat32;
+typedef volatile double  			vfloat64;
 
 /**********************************************************************************/
 /*                                 Definitions                                    */
