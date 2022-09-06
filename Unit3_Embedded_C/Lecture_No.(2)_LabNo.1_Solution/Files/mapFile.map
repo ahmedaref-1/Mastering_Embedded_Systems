@@ -1,0 +1,87 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+stringBuffer2       0x64              application.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+Mem              0x00000000         0x04000000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00010000                . = 0x10000
+
+.startup        0x00010000        0xc
+ startup.o(.text)
+ .text          0x00010000        0xc startup.o
+                0x00010000                reset
+
+.text           0x0001000c       0xdc
+ *(.text)
+ .text          0x0001000c       0x18 application.o
+                0x0001000c                main
+ .text          0x00010024       0x60 uart.o
+                0x00010024                uartSendString
+ *(.rodata)
+ .rodata        0x00010084       0x64 application.o
+                0x00010084                stringBuffer3
+
+.glue_7         0x000100e8        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000100e8        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000100e8        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000100e8        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x000100e8        0x0
+ .iplt          0x00000000        0x0 startup.o
+
+.rel.dyn        0x000100e8        0x0
+ .rel.iplt      0x00000000        0x0 startup.o
+
+.data           0x000100e8       0x64
+ *(.data)
+ .data          0x000100e8        0x0 startup.o
+ .data          0x000100e8       0x64 application.o
+                0x000100e8                stringBuffer
+ .data          0x0001014c        0x0 uart.o
+
+.igot.plt       0x0001014c        0x0
+ .igot.plt      0x00000000        0x0 startup.o
+
+.bss            0x0001014c       0x64
+ *(.bss)
+ .bss           0x0001014c        0x0 startup.o
+ .bss           0x0001014c        0x0 application.o
+ .bss           0x0001014c        0x0 uart.o
+ *(COMMON)
+ COMMON         0x0001014c       0x64 application.o
+                0x0001014c                stringBuffer2
+                0x000111b0                . = (. + 0x1000)
+                0x000111b0                stack_top = .
+LOAD startup.o
+LOAD application.o
+LOAD uart.o
+OUTPUT(learnInDepth.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x22 startup.o
+ .ARM.attributes
+                0x00000022       0x32 application.o
+ .ARM.attributes
+                0x00000054       0x32 uart.o
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 application.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 uart.o
