@@ -1,0 +1,41 @@
+/*
+LearnInDepth, UnitNo.(3), Embedded C, LessonNo.(3)
+LabNo.(2), Toggle LED Lab, STM32F103Cx
+@Copyright: Ahmed Aref Omaira
+*/
+
+/**************************************************************/
+main.o
+00000000 T main
+/**************************************************************/
+startup.o
+         U _E_BSS
+         U _E_DATA
+         U _E_TEXT
+         U _S_BSS
+         U _S_DATA
+00000000 W Bus_Handler
+00000000 T Default_Handler
+00000000 W H_Fault_Handler
+         U main
+00000000 W NMI_Handler
+0000000c T Reset_Handler
+         U STACK_TOP
+00000000 W Usage_Fault_Handler
+00000000 D vectors
+/**************************************************************/
+ledToggleLabAdvanced.elf
+20000000 B _E_BSS
+20000000 D _E_DATA
+08000124 T _E_TEXT
+20000000 B _S_BSS
+20000000 D _S_DATA
+08000094 W Bus_Handler
+08000094 T Default_Handler
+08000094 W H_Fault_Handler
+08000018 T main
+08000094 W NMI_Handler
+080000a0 T Reset_Handler
+20002000 B STACK_TOP
+08000094 W Usage_Fault_Handler
+08000000 T vectors
