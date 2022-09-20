@@ -1,0 +1,42 @@
+/*
+LearnInDepth, UnitNo.(3), Embedded C, LessonNo.(4)
+LabNo.(3), Toggle LED Lab, TM4C123GH6PM
+@Copyright: Ahmed Aref Omaira
+*/
+
+********************************************************
+main.o
+00000000 T main
+********************************************************
+startup.o
+         U _E_BSS
+         U _E_DATA
+         U _E_TEXT
+         U _S_BSS
+         U _S_DATA
+00000000 W Bus_Handler
+00000000 T Default_Handler
+00000000 R g_Ptr_Func_Vectors
+00000000 W H_Fault_Handler
+         U main
+00000000 W NMI_Handler
+0000000c T Reset_Handler
+00000000 b STACK_TOP
+00000000 W Usage_Fault_Handler
+********************************************************
+ledToggleLabAdvancedTivaC.elf
+20000400 B _E_BSS
+20000000 D _E_DATA
+0000013c T _E_TEXT
+20000000 B _S_BSS
+20000000 D _S_DATA
+000000ac W Bus_Handler
+000000ac T Default_Handler
+00000000 T g_Ptr_Func_Vectors
+000000ac W H_Fault_Handler
+00000018 T main
+000000ac W NMI_Handler
+000000b8 T Reset_Handler
+20000000 b STACK_TOP
+000000ac W Usage_Fault_Handler
+*******************************************************
