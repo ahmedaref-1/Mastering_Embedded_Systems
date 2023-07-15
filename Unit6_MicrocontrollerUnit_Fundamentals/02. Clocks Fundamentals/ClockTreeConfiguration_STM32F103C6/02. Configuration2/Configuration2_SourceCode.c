@@ -34,15 +34,15 @@ typedef volatile unsigned int vuint32_t ;
 
 int main(void)
 {
-	// AHB frequency 32 MHZ
-	// Done by default
-	// SysClk 32 MHZ
+	// Use only internal HSI_RC, Done by Default
+	// SysClk 32 MHZ, PLL Multiplier by 4
 	RCC_CFGR |=  (0b0110<<18);
+	// Enable PLL
 	RCC_CR |= (0b1<<24);
+	// Control the SW Mux to select PLL Clk Source as SysClk
 	RCC_CFGR |= (0b10);
+	// AHB frequency 32 MHZ, Done by default as now SysClk is 32 and AHB prescaler equals 1
 
-
-	// Use only internal HSI_RC
 	//APB1 Bus frequency 16 MHZ
 	RCC_CFGR &= ~(0b000<<8);
 	RCC_CFGR |=  (0b100<<8);
