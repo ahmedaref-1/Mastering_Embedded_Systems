@@ -25,7 +25,6 @@ typedef volatile unsigned int vuint32_t ;
 #define GPIOA_BASE 0x40010800
 #define GPIOA_CRH *(volatile uint32_t *)(GPIOA_BASE + 0x04)
 #define GPIOA_ODR *(volatile uint32_t *)(GPIOA_BASE + 0x0C)
-
 #define RCC_BASE 0x40021000
 #define RCC_APB2ENR *(volatile uint32_t *)(RCC_BASE + 0x18)
 #define RCC_CFGR *(volatile uint32_t *)(RCC_BASE + 0x04)
@@ -33,19 +32,23 @@ typedef volatile unsigned int vuint32_t ;
 
 int main(void)
 {
-	//APB1 Bus frequency 4MHZ
+	//APB1 Bus frequency 4MHZ, So Prescaler = 2
 	RCC_CFGR &= ~(0b000<<8);
 	RCC_CFGR |=  (0b100<<8);
-	//APB2 Bus frequency 2MHZ
+	
+	//APB2 Bus frequency 2MHZ, So Presecaler = 4
 	RCC_CFGR &= ~(0b000<<11);
 	RCC_CFGR |=  (0b101<<11);
-	// AHB frequency 8 MHZ
-	// SysClk 8 MHZ
-	// Use only internal HSI_RC
-	// All are done by default
+	
+	// Use only internal HSI_RC, Done by default
+	// SysClk 8 MHZ, By default SysClk is HSI_RC so it's 8MHZ already
+	// AHB frequency 8 MHZ, Done by default as it's prescaler equals 1 so AHB = SysClk by default
+	
+	
 
 	//Init clock for GPIO Port A
 	RCC_APB2ENR |= (1<<2);
+	
 	//Init GPIOA
 	GPIOA_CRH &= 0xFF0FFFFF;
 	GPIOA_CRH |= 0x00200000;
