@@ -23,13 +23,13 @@
 #define EXTI_GICR *(volatile uint32_t *)(0x5B)
 #define EXTI_GIFR *(volatile uint32_t *)(0x5A)
 
-//ALTERNATIVE FUNCTIONS REGISTERS
-
 void GPIO_INIT(void){
 	//PORTD PINS 2 & 3 and PORTB PIN 2 as DIGITAL INPUT
+	/*
 	GPIO_DDRD &=~(1<<2);
 	GPIO_DDRD &=~(1<<3);
 	GPIO_DDRB &=~(1<<2);
+	*/
 	//PORTD PINS 5, 6 & 7 as DIGITAL OUTPUT
 	GPIO_DDRD |=(1<<5);
 	GPIO_DDRD |=(1<<6);
