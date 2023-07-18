@@ -44,7 +44,7 @@ void EXTERNALINTERRUPT_INIT(void){
 	//Configure INT1 to request IRQ when on Rising edge (bit3:2)
 	EXTI_MCUCR |= (0b1101<<0);
 	//Configure INT2 to request IRQ when on Falling edge (bit6)
-	EXTI_MCUCSR |= (1<<6);
+	EXTI_MCUCSR &=~(1<<6);
 }
 
 int main(void)
