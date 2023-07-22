@@ -754,11 +754,11 @@ typedef struct{
  *                                           *
  *********************************************/
 
-#define GPIOA                              ((volatile GPIO_t *)GPIOA_BASE)
-#define GPIOB                              ((volatile GPIO_t *)GPIOB_BASE)
-#define GPIOC                              ((volatile GPIO_t *)GPIOC_BASE)
-#define GPIOD                              ((volatile GPIO_t *)GPIOD_BASE)
-#define GPIOE                              ((volatile GPIO_t *)GPIOE_BASE)
+#define GPIOA                              ((GPIO_t *)GPIOA_BASE)
+#define GPIOB                              ((GPIO_t *)GPIOB_BASE)
+#define GPIOC                              ((GPIO_t *)GPIOC_BASE)
+#define GPIOD                              ((GPIO_t *)GPIOD_BASE)
+#define GPIOE                              ((GPIO_t *)GPIOE_BASE)
 #define RCC                                ((volatile RCC_t  *)RCC_BASE)
 #define AFIO                               ((volatile AFIO_t *)AFIO_BASE)
 #define EXTI                               ((volatile EXTI_t *)EXTI_BASE)
