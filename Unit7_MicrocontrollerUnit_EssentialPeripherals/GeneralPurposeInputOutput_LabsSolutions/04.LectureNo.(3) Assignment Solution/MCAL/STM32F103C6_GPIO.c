@@ -273,8 +273,10 @@ void MCAL_GPIO_DeInit (GPIO_t* GPIOx)
  ******************************************************************************/
 uint8_t  MCAL_GPIO_ReadPin (GPIO_t* GPIOx , uint16_t PinNumber)
 {
+
 	/*
-	1st method : reading from PIN directly
+	 1st method : reading from PIN directly
+
 	switch(PinNumber)
 	{
 	case GPIO_PIN_0 :
@@ -313,6 +315,7 @@ uint8_t  MCAL_GPIO_ReadPin (GPIO_t* GPIOx , uint16_t PinNumber)
 
 	/*
 	2nd method : compare IDR Register with PIN and return either 1 or 0
+
 	*/
 	return ((((GPIOx->IDR.IDR) & PinNumber) == PinNumber)? HIGH : LOW);
 }

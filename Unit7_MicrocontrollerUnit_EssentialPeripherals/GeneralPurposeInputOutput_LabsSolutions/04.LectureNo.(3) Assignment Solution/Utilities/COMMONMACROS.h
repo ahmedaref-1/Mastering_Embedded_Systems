@@ -27,7 +27,7 @@
 #define TRUE        1U
 #define FALSE       0U
 #define HIGH		1U
-#define LOW 		1U
+#define LOW 		0U
 /*********** GLOBAL ENUM DEFINITION **********/
 typedef enum{
 	SUCCESS,
