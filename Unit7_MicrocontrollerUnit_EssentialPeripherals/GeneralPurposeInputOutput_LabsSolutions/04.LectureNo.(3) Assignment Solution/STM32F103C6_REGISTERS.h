@@ -10,11 +10,12 @@
 
 /******************************************
  *                                        *
- *                INCLUDES                *               *
- * 										  
+ *                INCLUDES                *
+ * 										  *
  * ****************************************/
 #include <stdint.h>
 #include <stdlib.h>
+#include "COMMONMACROS.h"
 
 
 /******************************************
@@ -769,12 +770,12 @@ typedef struct{
  *                                           *
  *********************************************/
 
-#define RCC_GPIOA_CLOCK_EN()             (RCC->APB2ENR.IOPAEN=1)
-#define RCC_GPIOB_CLOCK_EN()             (RCC->APB2ENR.IOPBEN=1)
-#define RCC_GPIOC_CLOCK_EN()             (RCC->APB2ENR.IOPCEN=1)
-#define RCC_GPIOD_CLOCK_EN()             (RCC->APB2ENR.IOPDEN=1)
-#define RCC_GPIOE_CLOCK_EN()             (RCC->APB2ENR.IOPEEN=1)
-#define RCC_AFIO_CLOCK_EN()              (RCC->APB2ENR.AFIOEN=1)
+#define RCC_GPIOA_CLOCK_EN()             (RCC->APB2ENR.IOPAEN=HIGH)
+#define RCC_GPIOB_CLOCK_EN()             (RCC->APB2ENR.IOPBEN=HIGH)
+#define RCC_GPIOC_CLOCK_EN()             (RCC->APB2ENR.IOPCEN=HIGH)
+#define RCC_GPIOD_CLOCK_EN()             (RCC->APB2ENR.IOPDEN=HIGH)
+#define RCC_GPIOE_CLOCK_EN()             (RCC->APB2ENR.IOPEEN=HIGH)
+#define RCC_AFIO_CLOCK_EN()              (RCC->APB2ENR.AFIOEN=HIGH)
 
 
 #endif /* STM32F103C6_REGISTERS_H_ */
