@@ -774,7 +774,7 @@ typedef struct{
 #define RCC_GPIOC_CLOCK_EN()             (RCC->APB2ENR.IOPCEN=1)
 #define RCC_GPIOD_CLOCK_EN()             (RCC->APB2ENR.IOPDEN=1)
 #define RCC_GPIOE_CLOCK_EN()             (RCC->APB2ENR.IOPEEN=1)
-#define RCC_AFIO_CLOCK_EN()              (RCC->APB2ENR. AFIOEN=1)
+#define RCC_AFIO_CLOCK_EN()              (RCC->APB2ENR.AFIOEN=1)
 
 
 #endif /* STM32F103C6_REGISTERS_H_ */
