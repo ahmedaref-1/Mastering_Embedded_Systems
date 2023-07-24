@@ -1,7 +1,7 @@
 /*
  * STM32F103C6_GPIO.h
  *
- *  Created on: Jul 22, 2023
+ *  Created on: Jul 24, 2023
  *      Author: Ahmed Aref Omaira
  */
 
@@ -13,14 +13,14 @@
  *                INCLUDES                *
  * 										  *
  * ****************************************/
-#include"../Utilities/STM32F103C6_REGISTERS.h"
+#include"STM32F103C6_REGISTERS.h"
 
 
-/******************************************
- *                                        *
- *   USER TYPE DEFINITIONS (STRUCUTRES)   *
- *                                        *
- ******************************************/
+/**********************************************
+ *          	                              *
+ *   PIN CONFIGURATION TYPEDEF USED BY USER   *
+ *       	                                  *
+ **********************************************/
 typedef struct{
 	// Specifies the GPIO pins to be configured
 	// This parameter must be a value of @ref GPIO_PINS_define
@@ -73,7 +73,7 @@ typedef struct{
 #define GPIO_MODE_Output_OD            0x00000005U  //0x01: General Purpose Output Open-Drain
 #define GPIO_MODE_Output_AF_PP         0x00000006U  //0x10: Alternate Function Output Push-Pull
 #define GPIO_MODE_Output_AF_OD         0x00000007U  //0x11: Alternate Function Output Open-Drain
-#define GPIO_MODE_Iuput_AF             0x00000008U  //0x01: Alternate Function Input
+#define GPIO_MODE_Input_AF             0x00000008U  //0x01: Alternate Function Input
 
 /*********** GPIO_MODE_MASK ****************/
 #define GPIO_MODE_Analog_MASK          0x00U  //0x00: Analog Mode
@@ -84,7 +84,7 @@ typedef struct{
 #define GPIO_MODE_Output_OD_MASK       0x01U  //0x01: General Purpose Output Open-Drain
 #define GPIO_MODE_Output_AF_PP_MASK    0x10U  //0x10: Alternate Function Output Push-Pull
 #define GPIO_MODE_Output_AF_OD_MASK    0x11U  //0x11: Alternate Function Output Open-Drain
-#define GPIO_MODE_Iuput_AF_MASK        0x01U  //0x01: Alternate Function Input
+#define GPIO_MODE_Input_AF_MASK       0x01U  //0x01: Alternate Function Input
 
 /*******************************************
  *          @ref GPIO_SPEED_define         *
@@ -94,6 +94,17 @@ typedef struct{
 #define GPIO_SPEED_2MHZ                0x02U  //Output mode, max speed 2  MHZ
 #define GPIO_SPEED_50MHZ               0x03U  //Output mode, max speed 50 MHZ
 
+/*******************************************
+ *          @ref GPIO_PIN_state            *
+ * *****************************************/
+#define GPIO_PIN_SET    	1
+#define GPIO_PIN_RESET     0
+
+/*******************************************
+ *          @ref GPIO_RETURN_LOCK           *
+ * *****************************************/
+#define GPIO_RETURN_LOCK_Enabled    	1
+#define GPIO_RETURN_LOCK_ERROR     	    0
 
 /******************************************
  *                                        *
@@ -107,7 +118,8 @@ uint16_t  MCAL_GPIO_ReadPort (GPIO_t* GPIOx);
 void MCAL_GPIO_WritePin      (GPIO_t* GPIOx , uint16_t PinNumber , uint8_t Value);
 void MCAL_GPIO_WritePort     (GPIO_t* GPIOx , uint16_t Value);
 void MCAL_GPIO_TogglePin     (GPIO_t* GPIOx , uint16_t PinNumber);
-void MCAL_GPIO_TogglePORT     (GPIO_t* GPIOx);
+void MCAL_GPIO_TogglePORT    (GPIO_t* GPIOx);
 Return_t MCAL_GPIO_LockPin   (GPIO_t* GPIOx , uint16_t PinNumber);
+
 
 #endif /* STM32F103C6_GPIO_H_ */

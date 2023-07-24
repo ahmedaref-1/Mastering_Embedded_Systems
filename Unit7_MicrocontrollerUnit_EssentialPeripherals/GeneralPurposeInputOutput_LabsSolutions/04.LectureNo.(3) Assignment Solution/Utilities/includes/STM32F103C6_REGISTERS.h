@@ -1,7 +1,7 @@
 /*
  * STM32F103C6.h
  *
- *  Created on: Jul 21, 2023
+ *  Created on: Jul 24, 2023
  *      Author: Ahmed Aref Omaira
  */
 
@@ -15,7 +15,7 @@
  * ****************************************/
 #include <stdint.h>
 #include <stdlib.h>
-#include "COMMONMACROS.h"
+
 
 
 /******************************************
@@ -684,7 +684,7 @@ typedef union{
 	};
 }AFIO_EVCR_t;
 
-// AF remap and debug I/O configuration register (AFIO_MAPR)
+// AF re-map and debug I/O configuration register (AFIO_MAPR)
 // Memory map and bit definitions for low-, medium- high- and XL-density devices
 typedef union{
 	volatile uint32_t MAPR;
@@ -723,7 +723,7 @@ typedef union{
 	};
 }AFIO_EXTICRx_t;
 
-// AF remap and debug I/O configuration register2 (AFIO_MAPR2)
+// AF re-map and debug I/O configuration register2 (AFIO_MAPR2)
 typedef union{
 	volatile uint32_t MAPR2;
 	struct{
@@ -776,6 +776,21 @@ typedef struct{
 #define RCC_GPIOD_CLOCK_EN()             (RCC->APB2ENR.IOPDEN=HIGH)
 #define RCC_GPIOE_CLOCK_EN()             (RCC->APB2ENR.IOPEEN=HIGH)
 #define RCC_AFIO_CLOCK_EN()              (RCC->APB2ENR.AFIOEN=HIGH)
+
+/**********************************************
+ *											  *
+ *         COMMON MACROS DEFINITION           *
+ *         									  *
+ * ********************************************/
+#define TRUE        1U
+#define FALSE       0U
+#define HIGH		1U
+#define LOW 		0U
+/*********** GLOBAL ENUM DEFINITION **********/
+typedef enum{
+	FAIL,
+	SUCCESS
+}Return_t;
 
 
 #endif /* STM32F103C6_REGISTERS_H_ */

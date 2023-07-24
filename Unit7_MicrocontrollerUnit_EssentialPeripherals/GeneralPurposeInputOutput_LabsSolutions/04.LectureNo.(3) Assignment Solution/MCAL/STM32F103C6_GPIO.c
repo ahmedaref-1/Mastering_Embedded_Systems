@@ -1,7 +1,7 @@
 /*
  * STM32F103C6_GPIO.c
  *
- *  Created on: Jul 22, 2023
+ *  Created on: Jul 24, 2023
  *      Author: Ahmed Aref Omaira
  */
 /******************************************
@@ -179,8 +179,8 @@ void MCAL_GPIO_Init(GPIO_t* GPIOx , GPIO_PinConfig_t* PinConfig)
 		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Output_AF_OD_MASK );
 		break;
 
-	case GPIO_MODE_Iuput_AF :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Iuput_AF_MASK );
+	case GPIO_MODE_Input_AF :
+		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Input_AF_MASK );
 		break;
 	}
 
@@ -501,8 +501,8 @@ Return_t MCAL_GPIO_LockPin   (GPIO_t* GPIOx , uint16_t PinNumber)
 	GPIOx->LCKR.LCKR |= PinNumber;
 
 	/*
-	 This bit can be read anytime. It can only be modified using the Lock Key
-	 Writing Sequence.
+	 This bit can be read anytime.
+	 It can only be modified using the Lock Key Writing Sequence.
   	 LOCK key writing sequence:
      Write 1
      Write 0
