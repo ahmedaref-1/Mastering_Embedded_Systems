@@ -15,9 +15,8 @@
  *
  ******************************************************************************
  */
-#include"../Utilities/STM32F103C6_REGISTERS.h"
-#include"../MCAL/STM32F103C6_GPIO.h"
 
+#include"STM32F103C6_GPIO.h"
 void CLOCK_INIT(void){
 	//Init clock for GPIO Port A
 	RCC_GPIOA_CLOCK_EN();
