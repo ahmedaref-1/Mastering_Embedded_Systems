@@ -1,12 +1,12 @@
 /*
- * STM32F103C6_GPIO.h
+ * STM32F103C6_EXTERNALINTERRUPTS.h
  *
  *  Created on: Jul 25, 2023
- *      Author: Ahmed Aref Omaira
+ *      Author: ahmed
  */
-#ifndef INCLUDES_STM32F103C6_GPIO_H_
-#define INCLUDES_STM32F103C6_GPIO_H_
 
+#ifndef INCLUDES_STM32F103C6_EXTERNALINTERRUPTS_H_
+#define INCLUDES_STM32F103C6_EXTERNALINTERRUPTS_H_
 /******************************************
  *                                        *
  *                INCLUDES                *
@@ -74,16 +74,16 @@ typedef struct{
 #define GPIO_MODE_Output_AF_OD         0x00000007U  //0x11: Alternate Function Output Open-Drain
 #define GPIO_MODE_Input_AF             0x00000008U  //0x01: Alternate Function Input
 
-/*********** GPIO_CNF_MASK ****************/
-#define GPIO_CNF_Analog_MASK          0x00U  //0x00: Analog CNF
-#define GPIO_CNF_Input_FLO_MASK       0x01U  //0x01: Floating Input (reset state)
-#define GPIO_CNF_Input_PU_MASK        0x10U  //0x10: Input with Pull-Up
-#define GPIO_CNF_Input_PD_MASK        0x10U  //0x10: Input with Pull-Down
-#define GPIO_CNF_Output_pp_MASK       0x00U  //0x00: General Purpose Output Push-Pull
-#define GPIO_CNF_Output_OD_MASK       0x01U  //0x01: General Purpose Output Open-Drain
-#define GPIO_CNF_Output_AF_PP_MASK    0x10U  //0x10: Alternate Function Output Push-Pull
-#define GPIO_CNF_Output_AF_OD_MASK    0x11U  //0x11: Alternate Function Output Open-Drain
-#define GPIO_CNF_Input_AF_MASK        0x01U  //0x01: Alternate Function Input ( map to input floating )
+/*********** GPIO_MODE_MASK ****************/
+#define GPIO_MODE_Analog_MASK          0x00U  //0x00: Analog Mode
+#define GPIO_MODE_Input_FLO_MASK       0x01U  //0x01: Floating Input (reset state)
+#define GPIO_MODE_Input_PU_MASK        0x10U  //0x10: Input with Pull-Up
+#define GPIO_MODE_Input_PD_MASK        0x10U  //0x10: Input with Pull-Down
+#define GPIO_MODE_Output_pp_MASK       0x00U  //0x00: General Purpose Output Push-Pull
+#define GPIO_MODE_Output_OD_MASK       0x01U  //0x01: General Purpose Output Open-Drain
+#define GPIO_MODE_Output_AF_PP_MASK    0x10U  //0x10: Alternate Function Output Push-Pull
+#define GPIO_MODE_Output_AF_OD_MASK    0x11U  //0x11: Alternate Function Output Open-Drain
+#define GPIO_MODE_Input_AF_MASK       0x01U  //0x01: Alternate Function Input
 
 /*******************************************
  *          @ref GPIO_SPEED_define         *
@@ -97,18 +97,13 @@ typedef struct{
  *          @ref GPIO_PIN_state            *
  * *****************************************/
 #define GPIO_PIN_SET    	1
-#define GPIO_PIN_RESET      0
+#define GPIO_PIN_RESET     0
 
-/*******************************************
- *          @ref GPIO_PORT_state            *
- * *****************************************/
-#define GPIO_PORT_SET    	 0xFFFF
-#define GPIO_PORT_RESET      0x0000
 /*******************************************
  *          @ref GPIO_RETURN_LOCK           *
  * *****************************************/
-#define GPIO_RETURN_LOCK_SUCCESS    	1
-#define GPIO_RETURN_LOCK_FAIL     	    0
+#define GPIO_RETURN_LOCK_Enabled    	1
+#define GPIO_RETURN_LOCK_ERROR     	    0
 
 /******************************************
  *                                        *
@@ -125,5 +120,4 @@ void MCAL_GPIO_TogglePin     (GPIO_t* GPIOx , uint16_t PinNumber);
 void MCAL_GPIO_TogglePORT    (GPIO_t* GPIOx);
 Return_t MCAL_GPIO_LockPin   (GPIO_t* GPIOx , uint16_t PinNumber);
 
-
-#endif /* INCLUDES_STM32F103C6_GPIO_H_ */
+#endif /* INCLUDES_STM32F103C6_EXTERNALINTERRUPTS_H_ */

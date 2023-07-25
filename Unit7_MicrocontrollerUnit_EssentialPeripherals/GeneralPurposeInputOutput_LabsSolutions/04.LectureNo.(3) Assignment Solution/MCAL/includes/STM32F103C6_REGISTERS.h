@@ -1,13 +1,12 @@
 /*
- * STM32F103C6.h
+ * STM32F103C6_REGISTERS.h
  *
- *  Created on: Jul 24, 2023
+ *  Created on: Jul 25, 2023
  *      Author: Ahmed Aref Omaira
  */
 
-#ifndef STM32F103C6_REGISTERS_H_
-#define STM32F103C6_REGISTERS_H_
-
+#ifndef INCLUDES_STM32F103C6_REGISTERS_H_
+#define INCLUDES_STM32F103C6_REGISTERS_H_
 /******************************************
  *                                        *
  *                INCLUDES                *
@@ -476,13 +475,13 @@ typedef union{
 
 /*********** GPIO Registers ***********/
 typedef struct{
-	GPIOx_CRL_t CRL;
-	GPIOx_CRH_t CRH;
-	GPIOx_IDR_t IDR;
-	GPIOx_ODR_t ODR;
-	GPIOx_BSRR_t BSRR;
-	GPIOx_BRR_t BRR;
-	GPIOx_LCKR_t LCKR;
+	GPIOx_CRL_t 	CRL;
+	GPIOx_CRH_t 	CRH;
+	GPIOx_IDR_t 	IDR;
+	GPIOx_ODR_t 	ODR;
+	GPIOx_BSRR_t 	BSRR;
+	GPIOx_BRR_t 	BRR;
+	GPIOx_LCKR_t 	LCKR;
 }GPIO_t;
 
 /*************************************************************
@@ -660,12 +659,12 @@ typedef union{
 
 /************* EXTI Registers ************/
 typedef struct{
-	volatile EXTI_IMR_t IMR;
-	volatile EXTI_EMR_t EMR;
-	volatile EXTI_RTSR_t RTSR;
-	volatile EXTI_FTSR_t FTSR;
-	volatile EXTI_SWIER_t SWIER;
-	volatile EXTI_PR_t PR;
+	volatile EXTI_IMR_t 	IMR;
+	volatile EXTI_EMR_t 	EMR;
+	volatile EXTI_RTSR_t 	RTSR;
+	volatile EXTI_FTSR_t 	FTSR;
+	volatile EXTI_SWIER_t 	SWIER;
+	volatile EXTI_PR_t 		PR;
 }EXTI_t;
 
 /**********************************************************
@@ -740,11 +739,11 @@ typedef union{
 
 /*********** AFIO Register ***********/
 typedef struct{
-	AFIO_EVCR_t EVCR;
-	AFIO_MAPR_t MAPR;
-	AFIO_EXTICRx_t AFIO_EXTICR[4];
-	volatile uint32_t Reserved;
-	AFIO_MAPR2_t MAPR2;
+	AFIO_EVCR_t 		EVCR;
+	AFIO_MAPR_t 		MAPR;
+	AFIO_EXTICRx_t 		AFIO_EXTICR[4];
+	volatile uint32_t 	Reserved;
+	AFIO_MAPR2_t 		MAPR2;
 }AFIO_t;
 
 
@@ -792,5 +791,4 @@ typedef enum{
 	SUCCESS
 }Return_t;
 
-
-#endif /* STM32F103C6_REGISTERS_H_ */
+#endif /* INCLUDES_STM32F103C6_REGISTERS_H_ */

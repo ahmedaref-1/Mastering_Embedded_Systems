@@ -1,7 +1,7 @@
 /*
- * STM32F103C6_GPIO.c
+ * STM32F103C6_EXTERNALINTERRUPTS.c
  *
- *  Created on: Jul 24, 2023
+ *  Created on: Jul 25, 2023
  *      Author: Ahmed Aref Omaira
  */
 /******************************************
@@ -20,49 +20,49 @@
 /*******************************************
  *      INTERNALLY USED FUNCITONS          *
  * *****************************************/
-void ConfigurationPin(GPIO_t* GPIOx , GPIO_PinConfig_t* PinConfig , uint8_t Configuration , uint8_t PinModeMask)
+void ConfigurationPin(GPIO_t* GPIOx , GPIO_PinConfig_t* PinConfig , uint8_t Configuration , uint8_t PinCNFMask)
 {
 	if(Configuration == LOW)
 	{
 		switch(PinConfig->GPIO_PinNumber)
 		{
 		case GPIO_PIN_0 :
-			GPIOx->CRL.CNF0 = PinModeMask;
+			GPIOx->CRL.CNF0 = PinCNFMask;
 			GPIOx->CRL.MODE0 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_1 :
-			GPIOx->CRL.CNF1 = PinModeMask;
+			GPIOx->CRL.CNF1 = PinCNFMask;
 			GPIOx->CRL.MODE1 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_2 :
-			GPIOx->CRL.CNF2 = PinModeMask;
+			GPIOx->CRL.CNF2 = PinCNFMask;
 			GPIOx->CRL.MODE2 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_3 :
-			GPIOx->CRL.CNF3 = PinModeMask;
+			GPIOx->CRL.CNF3 = PinCNFMask;
 			GPIOx->CRL.MODE3 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_4 :
-			GPIOx->CRL.CNF4 = PinModeMask;
+			GPIOx->CRL.CNF4 = PinCNFMask;
 			GPIOx->CRL.MODE4 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_5 :
-			GPIOx->CRL.CNF5 = PinModeMask;
+			GPIOx->CRL.CNF5 = PinCNFMask;
 			GPIOx->CRL.MODE5 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_6 :
-			GPIOx->CRL.CNF6 = PinModeMask;
+			GPIOx->CRL.CNF6 = PinCNFMask;
 			GPIOx->CRL.MODE6 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_7 :
-			GPIOx->CRL.CNF7 = PinModeMask;
+			GPIOx->CRL.CNF7 = PinCNFMask;
 			GPIOx->CRL.MODE7 = PinConfig->GPIO_OutputSpeed;
 			break;
 		}
@@ -72,42 +72,42 @@ void ConfigurationPin(GPIO_t* GPIOx , GPIO_PinConfig_t* PinConfig , uint8_t Conf
 		switch(PinConfig->GPIO_PinNumber)
 		{
 		case GPIO_PIN_8 :
-			GPIOx->CRH.CNF8 = PinModeMask;
+			GPIOx->CRH.CNF8 = PinCNFMask;
 			GPIOx->CRH.MODE8 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_9 :
-			GPIOx->CRH.CNF9 = PinModeMask;
+			GPIOx->CRH.CNF9 = PinCNFMask;
 			GPIOx->CRH.MODE9 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_10 :
-			GPIOx->CRH.CNF10 = PinModeMask;
+			GPIOx->CRH.CNF10 = PinCNFMask;
 			GPIOx->CRH.MODE10 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_11 :
-			GPIOx->CRH.CNF11 = PinModeMask;
+			GPIOx->CRH.CNF11 = PinCNFMask;
 			GPIOx->CRH.MODE11 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_12 :
-			GPIOx->CRH.CNF12 = PinModeMask;
+			GPIOx->CRH.CNF12 = PinCNFMask;
 			GPIOx->CRH.MODE12 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_13 :
-			GPIOx->CRH.CNF13 = PinModeMask;
+			GPIOx->CRH.CNF13 = PinCNFMask;
 			GPIOx->CRH.MODE13 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_14 :
-			GPIOx->CRH.CNF14 = PinModeMask;
+			GPIOx->CRH.CNF14 = PinCNFMask;
 			GPIOx->CRH.MODE14 = PinConfig->GPIO_OutputSpeed;
 			break;
 
 		case GPIO_PIN_15 :
-			GPIOx->CRH.CNF15 = PinModeMask;
+			GPIOx->CRH.CNF15 = PinCNFMask;
 			GPIOx->CRH.MODE15 = PinConfig->GPIO_OutputSpeed;
 			break;
 		}
@@ -141,46 +141,48 @@ void MCAL_GPIO_Init(GPIO_t* GPIOx , GPIO_PinConfig_t* PinConfig)
 {
 	// Port configuration register low  (GPIOx_CRL) (x=A..G) configure pin 0..7
 	// Port configuration register high (GPIOx_CRH) (x=A..G) configure pin 8..15
-	volatile uint8_t Configuration = (PinConfig->GPIO_PinNumber < GPIO_PIN_8)? LOW : HIGH;
+	volatile uint8_t ConfigurationRegister = (PinConfig->GPIO_PinNumber < GPIO_PIN_8)? LOW : HIGH;
 
 	switch(PinConfig->GPIO_Mode)
 	{
 	case GPIO_MODE_Analog :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Analog_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Analog_MASK );
 		break;
 
 	case GPIO_MODE_Input_FLO :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Input_FLO_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Input_FLO_MASK );
 		break;
 
 	case GPIO_MODE_Input_PU :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Input_PU_MASK );
-		//Input pull-up Table 20. Port bit configuration table
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Input_PU_MASK );
+		//Input pull-up, then ODRx.Pinx must be set
 		GPIOx->ODR.ODR |= PinConfig->GPIO_PinNumber;
 		break;
 
 	case GPIO_MODE_Input_PD :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Input_PD_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Input_PD_MASK );
+		//Input pull-up, then ODRx.Pinx must be reset
+		GPIOx->ODR.ODR &= ~(PinConfig->GPIO_PinNumber);
 		break;
 
 	case GPIO_MODE_Output_pp :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Output_pp_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Output_pp_MASK );
 		break;
 
 	case GPIO_MODE_Output_OD :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Output_OD_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Output_OD_MASK );
 		break;
 
 	case GPIO_MODE_Output_AF_PP :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Output_AF_PP_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Output_AF_PP_MASK );
 		break;
 
 	case GPIO_MODE_Output_AF_OD :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Output_AF_OD_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Output_AF_OD_MASK );
 		break;
 
 	case GPIO_MODE_Input_AF :
-		ConfigurationPin(GPIOx , PinConfig , Configuration , GPIO_MODE_Input_AF_MASK );
+		ConfigurationPin(GPIOx , PinConfig , ConfigurationRegister, GPIO_CNF_Input_AF_MASK );
 		break;
 	}
 
@@ -198,7 +200,7 @@ void MCAL_GPIO_Init(GPIO_t* GPIOx , GPIO_PinConfig_t* PinConfig)
 
   Retval            -None.
 
- Note              -None.
+ Note              	-None.
  *******************************************************************************/
 void MCAL_GPIO_DeInit (GPIO_t* GPIOx)
 {
@@ -336,7 +338,9 @@ uint8_t  MCAL_GPIO_ReadPin (GPIO_t* GPIOx , uint16_t PinNumber)
  ******************************************************************************/
 uint16_t  MCAL_GPIO_ReadPort (GPIO_t* GPIOx)
 {
-	return (GPIOx->IDR.IDR);
+	uint16_t portValue = 0;
+	portValue = GPIOx->IDR.IDR;
+	return portValue;
 }
 
 
@@ -365,50 +369,54 @@ void MCAL_GPIO_WritePin (GPIO_t* GPIOx , uint16_t PinNumber , uint8_t Value)
 	/*switch(PinNumber)
 	{
 	case GPIO_PIN_0 :
-		(GPIOx->ODR.PIN_0) = value;
+		(GPIOx->ODR.PIN_0) = Value;
 	case GPIO_PIN_1 :
-		(GPIOx->ODR.PIN_1) = value;
+		(GPIOx->ODR.PIN_1) = Value;
 	case GPIO_PIN_2 :
-		(GPIOx->ODR.PIN_2) = value;
+		(GPIOx->ODR.PIN_2) = Value;
 	case GPIO_PIN_3 :
-		(GPIOx->ODR.PIN_3) = value;
+		(GPIOx->ODR.PIN_3) = Value;
 	case GPIO_PIN_4 :
-		(GPIOx->ODR.PIN_4) = value;
+		(GPIOx->ODR.PIN_4) = Value;
 	case GPIO_PIN_5 :
-		(GPIOx->ODR.PIN_5) = value;
+		(GPIOx->ODR.PIN_5) = Value;
 	case GPIO_PIN_6 :
-		(GPIOx->ODR.PIN_6) = value;
+		(GPIOx->ODR.PIN_6) = Value;
 	case GPIO_PIN_7 :
-		(GPIOx->ODR.PIN_7) = value;
+		(GPIOx->ODR.PIN_7) = Value;
 	case GPIO_PIN_8 :
-		(GPIOx->ODR.PIN_8) = value;
+		(GPIOx->ODR.PIN_8) = Value;
 	case GPIO_PIN_9 :
-		(GPIOx->ODR.PIN_9) = value;
+		(GPIOx->ODR.PIN_9) = Value;
 	case GPIO_PIN_10 :
-		(GPIOx->ODR.PIN_10) = value;
+		(GPIOx->ODR.PIN_10) = Value;
 	case GPIO_PIN_11 :
-		(GPIOx->ODR.PIN_11) = value;
+		(GPIOx->ODR.PIN_11) = Value;
 	case GPIO_PIN_12 :
-		(GPIOx->ODR.PIN_12) = value;
+		(GPIOx->ODR.PIN_12) = Value;
 	case GPIO_PIN_13 :
-		(GPIOx->ODR.PIN_13) = value;
+		(GPIOx->ODR.PIN_13) = Value;
 	case GPIO_PIN_14 :
-		(GPIOx->ODR.PIN_14) = value;
+		(GPIOx->ODR.PIN_14) = Value;
 	case GPIO_PIN_15 :
-		(GPIOx->ODR.PIN_15) = value;
+		(GPIOx->ODR.PIN_15) = Value;
 	}*/
 
 	// 2nd method : write on ODR register Directly
-	/*if (Value == HIGH || Value == TRUE)
+	if (Value == HIGH || Value == TRUE)
 		GPIOx->ODR.ODR |= PinNumber;
 	else
-		GPIOx->ODR.ODR &= ~(PinNumber);*/
+		GPIOx->ODR.ODR &= ~(PinNumber);
 
-	/******** 2 - Using GPIOx->BSRR to write on it ********/
-	if (Value == HIGH || Value == TRUE)
-		GPIOx->BSRR.BR = (uint16_t)PinNumber;
+	/******** 2 - Using GPIOx->BSRR & GPIOx->BRR  to write on it ********/
+	/*********  CAUTION THIS METHOD DIDN'T WORK  ************************/
+	/*
+	if (Value == HIGH || Value == TRUE || GPIO_PIN_SET)
+		GPIOx->BSRR.BS |= (uint16_t)PinNumber;
 	else
-		GPIOx->BSRR.BS = (uint16_t)PinNumber;
+		GPIOx->BSRR.BR |= (uint16_t)PinNumber;
+	*/
+
 }
 
 
@@ -429,7 +437,7 @@ void MCAL_GPIO_WritePin (GPIO_t* GPIOx , uint16_t PinNumber , uint8_t Value)
  *****************************************************************************/
 void MCAL_GPIO_WritePort    (GPIO_t* GPIOx , uint16_t Value)
 {
-	GPIOx->ODR.ODR  = (uint32_t)Value;
+	GPIOx->ODR.ODR  = (uint16_t)Value;
 }
 
 
@@ -471,7 +479,7 @@ void MCAL_GPIO_TogglePin    (GPIO_t* GPIOx , uint16_t PinNumber)
  ********************************************************************************/
 void MCAL_GPIO_TogglePORT(GPIO_t* GPIOx)
 {
-	GPIOx->ODR.ODR ^= (uint32_t)HIGH;
+	GPIOx->ODR.ODR ^= (uint16_t)GPIO_PORT_SET;
 }
 
 
@@ -513,6 +521,6 @@ Return_t MCAL_GPIO_LockPin   (GPIO_t* GPIOx , uint16_t PinNumber)
 	GPIOx->LCKR.LCKK = TRUE;
 	GPIOx->LCKR.LCKK = FALSE;
 	GPIOx->LCKR.LCKK = TRUE;
-	return ((GPIOx->LCKR.LCKK == TRUE)? SUCCESS : FAIL);
+	return ((GPIOx->LCKR.LCKK == TRUE)? GPIO_RETURN_LOCK_SUCCESS : GPIO_RETURN_LOCK_FAIL);
 }
 
