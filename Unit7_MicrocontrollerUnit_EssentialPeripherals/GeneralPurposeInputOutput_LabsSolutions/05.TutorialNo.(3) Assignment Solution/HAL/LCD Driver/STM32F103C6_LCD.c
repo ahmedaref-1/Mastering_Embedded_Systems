@@ -28,10 +28,8 @@ void _delay_ms(uint32_t t)
 }
 void LCD_kick()
 {
-	// Make PIN(E) enabled, To ensure that any command is executing while checking LCD BUSY
 	MCAL_GPIO_WritePin(LCD_CTRL_PORT, LCD_EN_SWITCH, HIGH);
 	_delay_ms(50);
-	// Return PIN(E) disabled,To execute any command I want after then i will enable it again
 	MCAL_GPIO_WritePin(LCD_CTRL_PORT, LCD_EN_SWITCH, LOW);
 }
 void LCD_GPIO_init() {
@@ -65,12 +63,6 @@ void LCD_GPIO_init() {
 	MCAL_GPIO_Init(LCD_DATA_PORT, &PinConfiguration);
 	PinConfiguration.GPIO_PinNumber = GPIO_PIN_7;
 	MCAL_GPIO_Init(LCD_DATA_PORT, &PinConfiguration);
-
-	// 3.Reset the 3 configuration switches pins
-//	MCAL_GPIO_WritePin(LCD_CTRL_PORT, LCD_EN_SWITCH, GPIO_PIN_RESET);
-//	MCAL_GPIO_WritePin(LCD_CTRL_PORT, LCD_RS_SWITCH, GPIO_PIN_RESET);
-//	MCAL_GPIO_WritePin(LCD_CTRL_PORT, LCD_RW_SWITCH, GPIO_PIN_RESET);
-
 }
 /*******************************************
  *      APIs USED BY USER FUNCITONS        *

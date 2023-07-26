@@ -5,8 +5,8 @@
  *      Author: Ahmed Aref Omaira
  */
 
-#ifndef INCLUDES_STM32F103C6_LCD_H_
-#define INCLUDES_STM32F103C6_LCD_H_
+#ifndef STM32F103C6_LCD_H_
+#define STM32F103C6_LCD_H_
 
 /******************************************
  *                                        *
@@ -88,4 +88,4 @@ void LCD_clearScreen ();
 void LCD_GoToXY(unsigned char line, unsigned char position);
 
 
-#endif /* INCLUDES_STM32F103C6_LCD_H_ */
+#endif /* STM32F103C6_LCD_H_ */
