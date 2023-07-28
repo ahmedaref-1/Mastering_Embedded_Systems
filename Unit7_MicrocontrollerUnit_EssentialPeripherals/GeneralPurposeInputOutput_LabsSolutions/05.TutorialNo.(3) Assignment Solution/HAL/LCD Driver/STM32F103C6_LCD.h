@@ -25,16 +25,9 @@
 /*******************************************
  *             MODE CONFIGURATION          *
  * *****************************************/
-#define	EIGHT_BIT_MODE
-//#define FOUR_BIT_MODE
-
-#ifdef  EIGHT_BIT_MODE
-#define DATA_SHIFT 0 // if 8 bit mode defined, then we are in 8 bit mode so define data shift with value equals 0
-#endif
-
-#ifndef DATA_SHIFT
-#define DATA_SHIFT 4 // if data shift is not defined, then we are in the 4 bit mode so define data shift with value equals 4
-#endif
+#define	EIGHT_BIT_MODE 				8U
+#define FOUR_BIT_MODE				4U
+#define LCD_OPERATING_MODE 			EIGHT_BIT_MODE
 
 /*******************************************
  *             LCD INTERFACING             *
@@ -46,9 +39,18 @@
 #define LCD_RW_SWITCH GPIO_PIN_9
 #define LCD_RS_SWITCH GPIO_PIN_8
 
-#define LCD_FIRST_LINE								(0UL)
-#define LCD_SECOND_LINE								(1UL)
-#define LCD_FIRST_COLUMN							(0UL)
+#define LCD_D0_PIN GPIO_PIN_0
+#define LCD_D1_PIN GPIO_PIN_1
+#define LCD_D2_PIN GPIO_PIN_2
+#define LCD_D3_PIN GPIO_PIN_3
+#define LCD_D4_PIN GPIO_PIN_4
+#define LCD_D5_PIN GPIO_PIN_5
+#define LCD_D6_PIN GPIO_PIN_6
+#define LCD_D7_PIN GPIO_PIN_7
+
+#define LCD_FIRST_LINE		(0UL)
+#define LCD_SECOND_LINE		(1UL)
+#define LCD_FIRST_COLUMN	(0UL)
 
 /*******************************************
  *               LCD COMMANDS              *
